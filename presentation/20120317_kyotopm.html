@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html lang="ja-JP"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>Mojolicious::LiteでPJAXしてみた</title>
+	<meta name="viewport" content="width=1274, user-scalable=no">
+  <link href="./20120317_kyotopm_files/style.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="./20120317_kyotopm_files/app.css" media="screen" rel="stylesheet" type="text/css">
+</head>
+<body class="list" id="shower" style="-webkit-transform: none; ">
+  <header class="caption">
+  <h1>Mojolicious::LiteでPJAXしてみた</h1>
+</header>
+<div class="slide shout" id="No000"><div>
+  <section>
+    <h2>Mojolicious::Lite<br><br>でPJAXしてみた</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No001"><div>
+  <section>
+    <h2>その前に</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No002"><div>
+  <section>
+    <header>
+      <h2>Kyoto.pm<br><br>設立</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No003"><div>
+  <section>
+    <header>
+      <h2>おめでとう<br><br>ございます！</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No004"><div>
+  <section>
+    <h2></h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No005"><div>
+  <section>
+    <header>
+      <h2>自己紹介</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No006"><div>
+  <section>
+    <h2>名前<br><br>若林 信敬</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No007"><div>
+  <section>
+    <h2>Twitter<br><br>@nqounet</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No008"><div>
+  <section>
+    <h2><img src="./20120317_kyotopm_files/twitter_profile.jpg"></h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No009"><div>
+  <section>
+    <h2>Facebook<br><br>やってます</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No010"><div>
+  <section>
+    <h2><img src="./20120317_kyotopm_files/facebook_profile.png"></h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No011"><div>
+  <section>
+    <h2>職業<br>フリー<br>エンジニア</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No012"><div>
+  <section>
+    <h2>IT Office 西宮原</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No013"><div>
+  <section>
+    <h2><img src="./20120317_kyotopm_files/iton.png"></h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No014"><div>
+  <section>
+    <h2>Perlの仕事<br>ください</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No015"><div>
+  <section>
+    <h2>今日の発表</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No016"><div>
+  <section>
+    <h2>の前に</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No017"><div>
+  <section>
+    <h2>皆さん</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No018"><div>
+  <section>
+    <h2>use strict;<br><br>してますか？</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No019"><div>
+  <section>
+    <h2>という事で</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No020"><div>
+  <section>
+    <h2>Perl入学式を<br>よろしく<br>お願いします</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No021"><div>
+  <section>
+    <h2></h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No022"><div>
+  <section>
+    <header>
+      <h2>今日の発表</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No023"><div>
+  <section>
+    <h2>Mojolicious::Lite<br><br>でPJAXしてみた</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No024"><div>
+  <section>
+    <header>
+      <h2>PJAXとは<br>何か？</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No025"><div>
+  <section>
+    <h2>簡単に言うと</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No026"><div>
+  <section>
+    <h2>AJAXの<br><br>問題点を</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No027"><div>
+  <section>
+    <h2>克服した</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No028"><div>
+  <section>
+    <h2>次世代型<br><br>非同期通信</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No029"><div>
+  <section>
+    <header>
+      <h2>AJAXの<br><br>問題点</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No030"><div>
+  <section>
+    <header>
+      <h2>その１</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No031"><div>
+  <section>
+    <h2>ブラウザの</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No032"><div>
+  <section>
+    <h2>戻るボタンで</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No033"><div>
+  <section>
+    <h2>戻れない</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No034"><div>
+  <section>
+    <h2>（字余り）</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No035"><div>
+  <section>
+    <header>
+      <h2>その２</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No036"><div>
+  <section>
+    <h2>JavaScript<br><br>オフ</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No037"><div>
+  <section>
+    <h2>orz</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No038"><div>
+  <section>
+    <h2>AJAXの</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No039"><div>
+  <section>
+    <h2>「J」は</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No040"><div>
+  <section>
+    <h2>JavaScriptの</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No041"><div>
+  <section>
+    <header>
+      <h2>「J」</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No042"><div>
+  <section>
+    <h2>出来なくても</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No043"><div>
+  <section>
+    <h2>仕方ない！</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No044"><div>
+  <section>
+    <h2>（困ります）</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No045"><div>
+  <section>
+    <header>
+      <h2>大丈夫</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No046"><div>
+  <section>
+    <h2>ご安心ください</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No047"><div>
+  <section>
+    <h2>PJAXが</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No048"><div>
+  <section>
+    <h2>それらの問題点の</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No049"><div>
+  <section>
+    <h2>すべてを</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No050"><div>
+  <section>
+    <h2>解決いたします！</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No051"><div>
+  <section>
+    <h2></h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No052"><div>
+  <section>
+    <header>
+      <h2>PJAX</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No053"><div>
+  <section>
+    <h2>jQueryの<br><br>プラグイン</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No054"><div>
+  <section>
+    <h2>jquery-pjax</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No055"><div>
+  <section>
+    <header>
+      <h2>超便利</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No056"><div>
+  <section>
+    <header>
+      <h2>DEMO</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No057"><div>
+  <section>
+    <header>
+      <h2>PJAXとは<br><br>何か？</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No058"><div>
+  <section>
+    <h2>pushState<br>+<br>AJAX</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No059"><div>
+  <section>
+    <header>
+      <h2>PJAXの<br>仕組み</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No060"><div>
+  <section>
+    <header>
+      <h2>その１</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No061"><div>
+  <section>
+    <header>
+      <h2>ブラウザの<br>戻る／進む<br>が使える</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No062"><div>
+  <section>
+    <h2>pushState</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No063"><div>
+  <section>
+    <h2>ブラウザの履歴を<br><br>追加できる</h2>
+  </section>
+</div></div>
+<div class="slide" id="No064"><div>
+  <section>
+    <h2>history.pushState(data, title [, url])</h2>
+    <pre>    </pre>
+  </section>
+</div></div>
+<div class="slide shout" id="No065"><div>
+  <section>
+    <header>
+      <h2>その２</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No066"><div>
+  <section>
+    <header>
+      <h2>クローラに<br>やさしい<br>固定リンク</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No067"><div>
+  <section>
+    <h2>綺麗なURLで</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No068"><div>
+  <section>
+    <h2>しかも</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No069"><div>
+  <section>
+    <h2>JavaScript<br><br>オフ</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No070"><div>
+  <section>
+    <header>
+      <h2>OK</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No071"><div>
+  <section>
+    <h2>つまり</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No072"><div>
+  <section>
+    <h2>wget</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No073"><div>
+  <section>
+    <header>
+      <h2>OK</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No074"><div>
+  <section>
+    <h2>そして</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No075"><div>
+  <section>
+    <h2>curl</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No076"><div>
+  <section>
+    <header>
+      <h2>OK</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No077"><div>
+  <section>
+    <h2>AJAXの問題点が</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No078"><div>
+  <section>
+    <header>
+      <h2>全て解決</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No079"><div>
+  <section>
+    <h2>何度も言いますが</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No080"><div>
+  <section>
+    <h2>PJAXとは</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No081"><div>
+  <section>
+    <header>
+      <h2>次世代型<br><br>非同期通信</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No082"><div>
+  <section>
+    <h2></h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No083"><div>
+  <section>
+    <header>
+      <h2>実装</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No084"><div>
+  <section>
+    <h2>Mojolicious::Lite<br>&amp;<br>jquery-pjax</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No085"><div>
+  <section>
+    <header>
+      <h2>ポイント</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No086"><div>
+  <section>
+    <h2>jquery-pjaxは</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No087"><div>
+  <section>
+    <h2>PJAXでの<br>リクエスト時</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No088"><div>
+  <section>
+    <h2>HTTPヘッダに</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No089"><div>
+  <section>
+    <h2>"X-PJAX: true"</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No090"><div>
+  <section>
+    <h2>送信</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No091"><div>
+  <section>
+    <h2>Mojolicious::Lite</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No092"><div>
+  <section>
+    <h2>このヘッダを<br>読み取って</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No093"><div>
+  <section>
+    <h2>真の場合は</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No094"><div>
+  <section>
+    <h2>PJAX用の<br><br>layout</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No095"><div>
+  <section>
+    <h2>偽の場合は</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No096"><div>
+  <section>
+    <h2>通常の<br><br>layout</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No097"><div>
+  <section>
+    <h2>この分岐を<br><br>全てのルート上に</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No098"><div>
+  <section>
+    <h2>作成</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No099"><div>
+  <section>
+    <h2>どうするか？</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No100"><div>
+  <section>
+    <header>
+      <h2>一つの解</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No101"><div>
+  <section>
+    <header>
+      <h2>under</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No102"><div>
+  <section>
+    <h2>最初に定義する</h2>
+  </section>
+</div></div>
+<div class="slide" id="No103"><div>
+  <section>
+    <h2>root/app.pl</h2>
+    <pre>          <code>under sub {</code>
+          <code>  my $self = shift;</code>
+          <code>  $self-&gt;layout(</code>
+          <code>    $self-&gt;req-&gt;headers-&gt;header('X-PJAX')</code>
+          <code>      ? 'pjax' : 'default'</code>
+          <code>  );</code>
+          <code>  1;</code>
+          <code>};</code>
+    </pre>
+  </section>
+</div></div>
+<div class="slide shout" id="No104"><div>
+  <section>
+    <h2>全てのルートが</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No105"><div>
+  <section>
+    <h2>ここを通る</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No106"><div>
+  <section>
+    <h2>次にlayoutを作成</h2>
+  </section>
+</div></div>
+<div class="slide" id="No107"><div>
+  <section>
+    <h2>root/template/layouts/default.html.ep</h2>
+    <pre>          <code>&lt;html&gt;</code>
+          <code>  &lt;head&gt;&lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;&lt;/head&gt;</code>
+          <code>  &lt;body&gt;</code>
+          <code>    &lt;div id="pjaxbody"&gt;&lt;%= content %&gt;&lt;/div&gt;</code>
+          <code>    &lt;%= javascript '/js/jquery.js' %&gt;</code>
+          <code>    &lt;%= javascript '/js/app.js' %&gt;</code>
+          <code>  &lt;/body&gt;</code>
+          <code>&lt;/html&gt;</code>
+    </pre>
+  </section>
+</div></div>
+<div class="slide shout" id="No108"><div>
+  <section>
+    <h2>id付のdivで囲む</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No109"><div>
+  <section>
+    <h2>あとは</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No110"><div>
+  <section>
+    <h2>jQueryで</h2>
+  </section>
+</div></div>
+<div class="slide" id="No111"><div>
+  <section>
+    <h2>root/public/js/app.js</h2>
+    <pre>          <code>jQuery( function($) {</code>
+          <code>  $("a.pjaxlink").pjax('#pjaxbody');</code>
+          <code>});</code>
+    </pre>
+  </section>
+</div></div>
+<div class="slide shout" id="No112"><div>
+  <section>
+    <h2>PJAXにしたい<br><br>リンクに</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No113"><div>
+  <section>
+    <h2>バインドさせる</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No114"><div>
+  <section>
+    <h2>この場合は</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No115"><div>
+  <section>
+    <h2>PJAXにしたいリンクを</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No116"><div>
+  <section>
+    <h2>class="pjaxlink"</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No117"><div>
+  <section>
+    <h2>とすれば</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No118"><div>
+  <section>
+    <h2>OK</h2>
+  </section>
+</div></div>
+<div class="slide" id="No119"><div>
+  <section>
+    <h2>Mojolicious::Lite &amp; jquery-pjax</h2>
+    <pre>          <code>https://github.com/nqounet/p5-mojo-pjax</code>
+    </pre>
+  </section>
+</div></div>
+<div class="slide shout" id="No120"><div>
+  <section>
+    <h2>まとめ</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No121"><div>
+  <section>
+    <header>
+      <h2>PJAX</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No122"><div>
+  <section>
+    <header>
+      <h2>次世代型<br><br>非同期通信</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No123"><div>
+  <section>
+    <header>
+      <h2>質問</h2>
+    </header>
+  </section>
+</div></div>
+<div class="slide shout" id="No124"><div>
+  <section>
+    <h2>ご清聴<br>ありがとう<br>ございました</h2>
+  </section>
+</div></div>
+<div class="slide shout" id="No125"><div>
+  <section>
+    <h2>&nbsp;</h2>
+  </section>
+</div></div>
+
+  <div class="progress"><div></div></div>
+  <script src="./20120317_kyotopm_files/jquery.js" type="text/javascript"></script>
+  <script src="./20120317_kyotopm_files/script.js" type="text/javascript"></script>
+
+
+</body></html>
