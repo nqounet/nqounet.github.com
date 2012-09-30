@@ -1,0 +1,3 @@
+[submodule "presentation/20120929_yapcasia_ltthon/impress"]
+	path = presentation/20120929_yapcasia_ltthon/impress
+	url = git://github.com/bartaz/impress.js.git
