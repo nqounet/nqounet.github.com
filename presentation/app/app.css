@@ -1,3 +1,20 @@
 #md2reveal h1 {
   font-size: 2em;
+  line-height: 1.6;
+}
+#md2reveal code {
+  font-family: Ricty, monaco, monospace;
+  font-weight: bold;
+}
+#md2reveal li>code,
+#md2reveal p>code {
+  background-color: rgba(127, 127, 127, 0.4);
+}
+.appendix .reveal .state-background{
+  background-color: rgba(150, 210, 80, 0.3);
+}
+#md2reveal h2 img {
+  margin: 0;
+  max-width: 90%;
+  max-height: 90%;
 }
